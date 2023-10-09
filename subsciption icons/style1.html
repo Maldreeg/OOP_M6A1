@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel ="stylesheet" href="style1.css">
+</head>
+
+
+
+<body>
+    <h1>Sign-Up:</h1>
+    <div>   
+        <label>Name: </label>
+        <input type="text" id="name">
+    </div>
+    <div>
+        <label>Email: </label>
+        <input type="text" id="email">
+    </div>
+
+    <div style="display:flex">
+        <img id = "cash" src="cash.png" alt="cash" width="60px" height="50px" onclick="CashChosen()">
+        <img id = "credit" src="credit.png" alt="credit" width="60px" height="50px" onclick="CreditChosen()">
+        <input type="text" id="ccnum" maxlength="15" disabled="true">
+    </div>
+
+    <details>
+        <summary>Choose your Plan</summary>
+        <div style="display: flex;">
+            <div>
+                <input type="radio" name="radio_type" id="mobile" value="Mobile">
+                <lable for="mobile">Mobile</lable> 
+                <div>   
+                    <p>P150/monthly</p>
+                    <img src="Basic.png">
+                </div>
+            </div>
+            <div>
+                <input type="radio" name="radio_type" id="basic" value="Basic">
+                <lable for="basic">Basic</lable> 
+                <div style="display:flex; flex-direction: column;">   
+                    <p>P400/monthly</p>
+                    <img src="Basic.png">
+                </div>
+            </div>
+            <div>
+                <input type="radio" name="radio_type" id="standard" value="Standard">
+                <lable for="standard">Standard</lable> 
+                <div style="display:flex; flex-direction: column;">   
+                    <p>P500/monthly</p>
+                    <img src="Standard.png">
+                </div>
+            </div>
+            <div>
+                <input type="radio" name="radio_type" id="premium" value="Premium">
+                <lable for="premium">Premium</lable>
+                <div style="display:flex; flex-direction: column;">   
+                    <p>P600/monthly</p>
+                    <img src="Premium.png">
+                </div>
+            </div>
+        </div>
+    </details>
+
+   
+    <label for="addUser">Additional Users:</label>
+    <input type="number" id="addUser"><br>
+
+    <input type="radio" id="720" name="radio_resolution" value="720p">
+    <label for="720">720p</label>
+    <input type="radio" id="1080" name="radio_resolution" value="1080p">
+    <label for="1080">1080p</label>
+    <input type="radio" id="4K" name="radio_resolution" value="4K">
+    <label for="4K">4K</label>
+    <div>
+        <button id = "Signup">Sign-up</button>
+    </div>
+    <div>
+        <p id = "Name"></p>
+        <p id = "Email"></p>
+        <p id = "paymentMethod"></p>
+        <p id = "subscription"></p>
+        <p id = "TMF"></p>
+        <div id="Dimg"></div>
+        <p id = "userNum"></p>
+        <p id = "dateNextPayment"></p>
+    </div>
+
+    <script>
+    //boolean to determine the picked payment method
+    let IsCashChosen=false;
+    document.getElementById("Signup").addEventListener("click", () => {
+        Validation();
+        //basic info
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        document.getElementById("Name").textContent=`Name: ${name}`;
+        document.getElementById("Email").textContent=`Email: ${email}`;
+        
+        //PaymentMethod
+        if(IsCashChosen){
+            document.getElementById("paymentMethod").textContent="Payment Method: Cash";
+        }
+        else{
+            let CreditNum=document.getElementById("ccnum").value;
+            document.getElementById("paymentMethod").textContent=`Payment Method: Credit Card num.${CreditNum}`;
+        }
+
+        //plan
+        let plan = document.getElementsByName("radio_type");
+        let planPicked="";
+        plan.forEach((plans)  =>{
+            if (plans.checked){
+               document.getElementById("subscription").textContent=`Your plan is: ${plans.value}`;
+               planPicked=plans.value;
+            }
+        })
+
+        //calls the function that creates the images
+        CreateImage(planPicked);
+
+        //resolution(to add the price to the total fee)
+        let res = document.getElementsByName("radio_resolution");
+        let resPrice = 0;
+        res.forEach((resolutions)  =>{
+            if (resolutions.checked){
+               if(resolutions.value == "1080p"){
+                  let resPrice = 30;
+               }
+               else if(resolutions.value == "4K"){
+                  let resPrice = 80;
+               }
+               else {
+                  let resPrice = 0;
+               }
+            }
+        });
+        
+        //plan price 
+        let sub = document.getElementsByName("radio_resolution");
+        let subPrice = 0;
+        sub.forEach((subscribe)  =>{
+            if (subscribe.checked){
+               if(subscribe.value == "Basic"){
+                  let subPrice = 400;
+               }
+               else if(subscribe.value == "Standard"){
+                  let subPrice = 500;
+               }
+               else if(subscribe.value == "Premium"){
+                  let subPrice = 600;
+               }
+               else {
+                  let subPrice = 150;
+               }
+            }
+        });
+        
+        //total price
+        //document.getElementById("userNum").textContent=`The number of users is: ${userNum.value}`;
+
+        //num of user
+        let userNum = document.getElementById("addUser");
+        document.getElementById("userNum").textContent=`The number of users is: ${userNum.value}`;
+        let userNumPrice = userNum.value * 60; //hehe pero atleast may idea kayo pag usto nyo deretsahan na
+        
+        //date of next payment
+        var currentdate = new Date();
+        let nextPaymentDate = (new Date(now.getFullYear(), now.getMonth()+1, now.getDate()));
+        const paymentDateString=`${nextPaymentDate}`;
+        document.getElementById("dateNextPayment").textContent = `Next Payment Date: ${paymentDateString}`;
+    });
+
+    function CashChosen(){
+        let img=document.getElementById("cash");
+        img.style.border="5px solid black";
+        let otherimg=document.getElementById("credit");
+        otherimg.style.border = null;
+        document.getElementById("ccnum").disabled=true;
+        IsCashChosen=true;
+    }
+
+    function CreditChosen(){
+        let img=document.getElementById("credit");
+        img.style.border = "5px solid black";
+        let otherimg=document.getElementById("cash");
+        otherimg.style.border = null;
+        document.getElementById("ccnum").disabled=false;
+        IsCashChosen=false;
+    }
+
+    function CreateImage(pickedPlan){
+        let imageoutput =document.getElementById("Dimg");
+        switch(pickedPlan){
+            case "Mobile":
+                var img=document.createElement("img");
+                img.src="Basic.png";
+                imageoutput.appendChild(img);
+                break;
+            case "Basic":
+                var img=document.createElement("img");
+                img.src=pickedPlan+".png";
+                imageoutput.appendChild(img);
+                break;
+            case "Standard":
+                var img=document.createElement("img");
+                img.src=pickedPlan+".png";
+                imageoutput.appendChild(img);
+                break;
+            case "Premium":
+                var img=document.createElement("img");
+                img.src=pickedPlan+".png";
+                imageoutput.appendChild(img);
+                break;  
+        }
+    }
+
+    function Validation(){
+
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+body {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    max-width: 835px;
+    margin: 0 auto;
+    background-image:url('background.gif');
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    animation: slideIn 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    width: 600px;
+    height: auto; /* Adjust the height to be auto so it adapts to content */
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 0, 0, 1);
+    border: 1px solid #15cdca;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    margin-bottom: 20px; /* Add margin to separate form and details */
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    background-color: #4fe0b6;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+#payment {
+    font-weight: bold;
+    font-size: 16;
+    background-color: #4fe0b6;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+label {
+    font-weight: bold;
+    font-size: 28;
+    background-color: #4fe0b6;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 80%;
+    padding: 6px;
+    margin: 1px;
+    border: 1px solid #4fe0b6;
+    border-radius: 5px;
+}
+
+div {
+    margin: 10px;
+}
+
+/* Styling for the details section with border */
+details {
+    margin: 20px;
+    padding: 20px;
+    background-color: #1a1919;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #4fe0b6;
+    animation: slideIn 1s ease;
+    border: 2px solid #4fe0b6; /* Add border to the details section */
+}
+
+/* Styling for the plan options within details */
+details div > div {
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    animation: slideIn 1s ease;
+    
+}
+
+/* Styling for plan images within details */
+details div > div img {
+    margin-top: 10px;
+    max-width: 100px;
+}
+
+/* Styling for payment input within details */
+details input[type="text"][disabled] {
+    background-color: #0c102c85;
+}
+
+details input[type="text"][enabled] {
+    background-color: #15cdca;
+}
+
+/* Styling for resolution options within details */
+details label[for="720"],
+details label[for="1080"],
+details label[for="4K"] {
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* Styling for the "Additional Users" label within details */
+details label[for="addUser"] {
+    display: block;
+    margin-top: 10px;
+}
+
+#Signup {
+    background-color: #15cdca;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    color: #242323;
+    padding: 10px 200px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#okbtn {
+    background-color: #15cdca;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    color: #242323;
+    padding: 10px 200px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+#Signup:hover {
+    background-color: #3e54d3;
+}
+
+#Name, #Email, #paymentMethod, #subscription, #TMF, #userNum, #dateNextPayment {
+    margin-top: 10px;
+    font-size: 20px;
+    background-color: #4fe0b6;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.popup {
+    animation: slideIn 1s ease;
+    width: 500px;
+    height: 700px;
+    text-align: center;
+    padding: 0% 30px 30px;
+    border-radius: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 1);
+    border: 1px solid #15cdca;
+    position: fixed;
+    display: none; /* Initially hide the popup */
+    z-index: 999; /* Make sure it appears on top of other content */
+  }
+
+  .popup h2{
+    margin-top: 10px;
+    font-size: 40px;
+    background-color: #4fe0b6;
+    background-image: linear-gradient(45deg, #4fe0b6, #4f80e2);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+  }
+  
+
